@@ -6,7 +6,7 @@
 /*   By: nde-chab <nde-chab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 14:45:31 by nde-chab          #+#    #+#             */
-/*   Updated: 2024/07/11 17:09:19 by nde-chab         ###   ########.fr       */
+/*   Updated: 2024/07/12 17:12:39 by nde-chab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	close_pipe(t_pip *pip)
 	if (!pip)
 		return ;
 	while (pip->prev)
-		pip  =  pip->prev;
+		pip = pip->prev;
 	while (pip)
 	{
 		close(pip->pipe_fd[0]);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nde-chab <nde-chab@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/12 17:13:13 by nde-chab          #+#    #+#             */
+/*   Updated: 2024/07/12 17:13:14 by nde-chab         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PIPEX_H
 # define PIPEX_H
 
@@ -25,7 +37,6 @@ typedef struct s_pip
 }					t_pip;
 
 // creat cmd && error
-int					error_files(char *file_1, char *file_2);
 char				**find_paths(char **envp);
 char				*find_path(char **paths, char *cmd);
 void				exec_child_last(t_pip *pip, char *cmd, char *file);
@@ -35,11 +46,11 @@ int					file_to_pipe(char *file, t_pip *pip);
 void				pipe_to_pipe(int pipe_fd_1[2], int pipe_fd_2[2],
 						t_pip *pip);
 void				exec_child_midle(t_pip *pip, char *cmd);
-
-// utils
+void				creat_here_doc_take_path_exec(char **av, char **envp);
+int					middle_cmd(t_pip **pip, int i, char **envp, char **av);
 void				ft_free_strs(char **strs);
-
-// do cmd
+int					pipe_to_file_for_here_doc(char *file, t_pip *pip);
+void				exec_child_last_here_doc(t_pip *pip, char *cmd, char *file);
 void				exec(pid_t pid, char **cmd, char **envp);
 
 // struct utils
