@@ -6,7 +6,7 @@
 /*   By: nde-chab <nde-chab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:36:50 by nde-chab          #+#    #+#             */
-/*   Updated: 2024/07/12 15:51:47 by nde-chab         ###   ########.fr       */
+/*   Updated: 2024/07/15 16:33:05 by nde-chab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,5 @@ void	creat_here_doc_take_path_exec(char **av, char **envp)
 	close(file_fd);
 	take_path_exec_here_doc(av, envp, name);
 	unlink(name);
+	free(name);
 }

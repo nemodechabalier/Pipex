@@ -6,7 +6,7 @@
 /*   By: nde-chab <nde-chab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:58:07 by nde-chab          #+#    #+#             */
-/*   Updated: 2024/07/12 17:11:22 by nde-chab         ###   ########.fr       */
+/*   Updated: 2024/07/15 16:24:49 by nde-chab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*find_path(char **paths, char *cmd)
 	i = 0;
 	if (!cmd)
 		return (NULL);
-	if (access(cmd, X_OK) == 0)
+	if (access(cmd, F_OK) == 0)
 		return (strdup(cmd));
 	while (paths[i])
 	{
@@ -32,7 +32,7 @@ char	*find_path(char **paths, char *cmd)
 		free(temp);
 		if (!road)
 			return (NULL);
-		if (access(road, X_OK) == 0)
+		if (access(road, F_OK) == 0)
 			return (road);
 		else
 			free(road);

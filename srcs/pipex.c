@@ -6,7 +6,7 @@
 /*   By: nde-chab <nde-chab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:47:35 by nde-chab          #+#    #+#             */
-/*   Updated: 2024/07/15 14:23:14 by nde-chab         ###   ########.fr       */
+/*   Updated: 2024/07/15 16:31:03 by nde-chab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,12 @@ int	main(int ac, char **av, char **envp)
 		return (ft_printf("need 4 args : file1 cmd1 cmd2 file2"), -1);
 	else
 	{
-		if (ft_strncmp(av[1], "here_doc", 9) == 0)
+		if (ft_strncmp(av[1], "here_doc", 9) == 0 && ac > 5)
 			creat_here_doc_take_path_exec(av, envp);
-		else
+		else if (ft_strncmp(av[1], "here_doc", 9) != 0)
 			take_path_exec(av, envp);
+		else
+			return (ft_printf("Error whith here_doc\n"), -1);
 	}
 	return (0);
 }
