@@ -6,7 +6,7 @@
 /*   By: nde-chab <nde-chab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:47:35 by nde-chab          #+#    #+#             */
-/*   Updated: 2024/07/15 16:31:03 by nde-chab         ###   ########.fr       */
+/*   Updated: 2024/07/16 22:08:06 by nde-chab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,32 @@ void	take_path_exec(char **av, char **envp)
 	del_pip(&pip);
 }
 
+int	test(char **av, int ac)
+{
+	int	j;
+	int	i;
+
+	i = 2;
+	while (i < ac - 1)
+	{
+		j = 0;
+		while (av[i][j] == ' ' && av[i][j])
+			j++;
+		if (av[i][j] == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	main(int ac, char **av, char **envp)
 {
 	if (ac < 5)
 		return (ft_printf("need 4 args : file1 cmd1 cmd2 file2"), -1);
 	else
 	{
+		if (test(av, ac) == 0)
+			return (ft_printf("need real cmd & file"), -1);
 		if (ft_strncmp(av[1], "here_doc", 9) == 0 && ac > 5)
 			creat_here_doc_take_path_exec(av, envp);
 		else if (ft_strncmp(av[1], "here_doc", 9) != 0)
