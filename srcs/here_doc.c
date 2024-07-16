@@ -6,13 +6,13 @@
 /*   By: nde-chab <nde-chab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:36:50 by nde-chab          #+#    #+#             */
-/*   Updated: 2024/07/15 16:33:05 by nde-chab         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:26:37 by nde-chab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static char	*creat_here_doc(int file_fd)
+static char	*creat_here_doc(int *file_fd)
 {
 	char	*name;
 	char	*temp;
@@ -34,8 +34,8 @@ static char	*creat_here_doc(int file_fd)
 			return (NULL);
 		i++;
 	}
-	file_fd = open(name, O_CREAT, 0644);
-	close(file_fd);
+	*file_fd = open(name, O_CREAT, 0644);
+	close(*file_fd);
 	return (name);
 }
 
@@ -69,19 +69,19 @@ void	creat_here_doc_take_path_exec(char **av, char **envp)
 	char	*name;
 	char	*line;
 	int		file_fd;
-	int		len;
 
-	file_fd = 0;
-	line = get_next_line(0);
-	len = strlen(av[2]);
-	name = creat_here_doc(file_fd);
+	write(2, "> ", 2);
+	name = creat_here_doc(&file_fd);
 	if (!name)
 		return ;
+	line = get_next_line(0);
 	file_fd = open(name, W_OK, R_OK);
 	while (line)
 	{
-		if (ft_strncmp(line, av[2], len) == 0 && line[len] == '\n')
+		if (ft_strncmp(line, av[2], strlen(av[2])) == 0
+			&& line[strlen(av[2])] == '\n')
 			break ;
+		write(2, "> ", 2);
 		write(file_fd, line, ft_strlen(line));
 		free(line);
 		line = get_next_line(0);
