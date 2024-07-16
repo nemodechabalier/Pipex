@@ -1,6 +1,6 @@
-a.out
-*file.txt
-pipex*
-obj 
-*/obj
-*/*.a
+obj
+libft_all/obj
+push_swap
+checker
+.vscode
+push_swap_*
